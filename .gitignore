@@ -1,0 +1,6 @@
+# Git Ignore for SueldosPro
+.vscode/
+.idea/
+*.log
+*.tmp
+lib_tmp/

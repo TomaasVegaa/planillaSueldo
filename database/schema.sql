@@ -6,6 +6,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `liquidaciones`;
 DROP TABLE IF EXISTS `empleados`;
 DROP TABLE IF EXISTS `configuracion`;
+DROP TABLE IF EXISTS `usuarios`;
 
 CREATE TABLE `configuracion` (
   `clave` varchar(50) NOT NULL,
@@ -17,6 +18,18 @@ INSERT INTO `configuracion` (`clave`, `valor`) VALUES
 ('basico_8hs', '889390'),
 ('no_remunerativo', '97797.89'),
 ('inc_gremio', '0');
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(50) NOT NULL UNIQUE,
+  `password_hash` varchar(255) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `creado_en` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insertar Usuario Inicial (admin / admin123)
+INSERT INTO `usuarios` (`id`, `usuario`, `password_hash`, `nombre`) VALUES (1, 'admin', '$2y$10$nElzlObCmP12SA/omdnm3ORQZ36PmPMNBBQ8e3NwDxoAbedarKyo.', 'Contadora');
 
 CREATE TABLE `empleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

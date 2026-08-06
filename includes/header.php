@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SueldosPro | Sistema de Liquidación y Recibos PDF</title>
+    <title>Estudio Jerez | Sistema de Liquidación y Recibos PDF</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -18,11 +18,11 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="container nav-wrapper">
             <a href="index.php" class="brand-logo">
                 <div class="logo-icon">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <i class="fa-solid fa-calculator"></i>
                 </div>
                 <div>
-                    <span>SueldosPro</span>
-                    <span style="font-size: 0.7rem; display: block; color: var(--accent-blue); font-weight: 400; margin-top: -3px;">Gestión de Liquidaciones</span>
+                    <span>Estudio Jerez</span>
+                    <span style="font-size: 0.725rem; display: block; color: var(--accent-gold); font-weight: 500; margin-top: -2px; letter-spacing: 0.02em;">Estudio Contable & Liquidaciones</span>
                 </div>
             </a>
             <ul class="nav-links">

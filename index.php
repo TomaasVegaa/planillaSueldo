@@ -48,7 +48,7 @@ include __DIR__ . '/includes/header.php';
 <div class="page-header">
     <div>
         <h1 class="page-title">Dashboard de Liquidación</h1>
-        <p class="page-subtitle">Período Activo: <strong style="color: var(--accent-blue); font-size: 1.1rem;"><?= FechaHelper::formatPeriodo($periodoActivo) ?></strong></p>
+        <p class="page-subtitle">Período Activo: <strong style="color: var(--accent-navy); font-weight: 700; font-size: 1.1rem;"><?= FechaHelper::formatPeriodo($periodoActivo) ?></strong></p>
     </div>
     
     <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
@@ -62,7 +62,7 @@ include __DIR__ . '/includes/header.php';
         </form>
 
         <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('modalNuevoMes').style.display='flex'">
-            <i class="fa-solid fa-calendar-plus" style="color: var(--accent-emerald);"></i> + Abrir Nuevo Mes
+            <i class="fa-solid fa-calendar-plus" style="color: var(--accent-gold-dark);"></i> + Abrir Nuevo Mes
         </button>
 
         <a href="liquidaciones.php?periodo=<?= $periodoActivo ?>" class="btn btn-primary btn-sm">
@@ -80,7 +80,7 @@ include __DIR__ . '/includes/header.php';
     </div>
     <div class="stat-card">
         <div class="stat-label">Total Devengado Mensual</div>
-        <div class="stat-value" style="color: var(--accent-blue);">$<?= number_format($totalDevengado, 2, ',', '.') ?></div>
+        <div class="stat-value" style="color: var(--accent-navy);">$<?= number_format($totalDevengado, 2, ',', '.') ?></div>
         <div class="stat-desc">Sueldos base + Antigüedad + Presentismo + Título + SAC</div>
     </div>
     <div class="stat-card amber">
@@ -99,7 +99,7 @@ include __DIR__ . '/includes/header.php';
 <div class="card">
     <div class="card-header">
         <h2 class="card-title">
-            <i class="fa-solid fa-list-check" style="color: var(--accent-indigo);"></i> 
+            <i class="fa-solid fa-list-check" style="color: var(--accent-navy);"></i> 
             Detalle de Sueldos - <?= FechaHelper::formatPeriodo($periodoActivo) ?>
         </h2>
         <span class="badge badge-purple">Sueldo Básico General: $<?= number_format($basicoGeneral, 2, ',', '.') ?></span>
@@ -187,10 +187,10 @@ include __DIR__ . '/includes/header.php';
 </div>
 
 <!-- Modal para Abrir un Nuevo Mes Futuro -->
-<div id="modalNuevoMes" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 2000; align-items: center; justify-content: center; padding: 1rem;">
-    <div class="card" style="width: 100%; max-width: 450px; margin: 0; background: var(--bg-surface); border: 1px solid var(--border-color);">
+<div id="modalNuevoMes" class="modal-overlay" style="display: none;">
+    <div class="modal-content card" style="margin: 0;">
         <div class="card-header">
-            <h3 class="card-title"><i class="fa-solid fa-calendar-plus" style="color: var(--accent-emerald);"></i> Abrir Nuevo Mes de Liquidación</h3>
+            <h3 class="card-title"><i class="fa-solid fa-calendar-plus" style="color: var(--accent-gold-dark);"></i> Abrir Nuevo Mes de Liquidación</h3>
             <button onclick="document.getElementById('modalNuevoMes').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;">&times;</button>
         </div>
         <form method="GET" action="index.php">

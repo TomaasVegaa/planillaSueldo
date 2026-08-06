@@ -40,7 +40,7 @@ include __DIR__ . '/includes/header.php';
 </div>
 
 <?php if ($mensaje): ?>
-    <div style="padding: 1rem; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-emerald); color: var(--accent-emerald); margin-bottom: 1.5rem;">
+    <div style="padding: 1rem; border-radius: var(--radius-md); background: #f0fdf4; border: 1px solid #bbf7d0; color: var(--accent-emerald); margin-bottom: 1.5rem;">
         <i class="fa-solid fa-circle-check"></i> <?= htmlspecialchars($mensaje) ?>
     </div>
 <?php endif; ?>
@@ -48,7 +48,7 @@ include __DIR__ . '/includes/header.php';
 <div class="card" style="max-width: 650px;">
     <div class="card-header">
         <h2 class="card-title">
-            <i class="fa-solid fa-sliders" style="color: var(--accent-purple);"></i>
+            <i class="fa-solid fa-sliders" style="color: var(--accent-navy);"></i>
             Parámetros del Sueldo Básico de Convenio
         </h2>
     </div>

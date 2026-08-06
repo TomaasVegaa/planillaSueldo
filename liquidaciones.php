@@ -145,13 +145,13 @@ include __DIR__ . '/includes/header.php';
         </form>
 
         <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('modalNuevoMes').style.display='flex'">
-            <i class="fa-solid fa-calendar-plus" style="color: var(--accent-emerald);"></i> + Abrir Nuevo Mes
+            <i class="fa-solid fa-calendar-plus" style="color: var(--accent-gold-dark);"></i> + Abrir Nuevo Mes
         </button>
     </div>
 </div>
 
 <?php if ($mensaje): ?>
-    <div style="padding: 1rem; border-radius: var(--radius-md); background: <?= $tipoMensaje == 'success' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(244, 63, 94, 0.15)' ?>; border: 1px solid <?= $tipoMensaje == 'success' ? 'var(--accent-emerald)' : 'var(--accent-rose)' ?>; color: <?= $tipoMensaje == 'success' ? 'var(--accent-emerald)' : 'var(--accent-rose)' ?>; margin-bottom: 1.5rem;">
+    <div style="padding: 1rem; border-radius: var(--radius-md); background: <?= $tipoMensaje == 'success' ? '#f0fdf4' : '#fef2f2' ?>; border: 1px solid <?= $tipoMensaje == 'success' ? '#bbf7d0' : '#fecaca' ?>; color: <?= $tipoMensaje == 'success' ? 'var(--accent-emerald)' : 'var(--accent-rose)' ?>; margin-bottom: 1.5rem;">
         <i class="fa-solid <?= $tipoMensaje == 'success' ? 'fa-circle-check' : 'fa-triangle-exclamation' ?>"></i> <?= htmlspecialchars($mensaje) ?>
     </div>
 <?php endif; ?>
@@ -162,7 +162,7 @@ include __DIR__ . '/includes/header.php';
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">
-                <i class="fa-solid fa-file-pen" style="color: var(--accent-amber);"></i> 
+                <i class="fa-solid fa-file-pen" style="color: var(--accent-navy);"></i> 
                 Planilla de Novedades - <?= FechaHelper::formatPeriodo($periodo) ?>
             </h2>
             <button type="submit" class="btn btn-success">
@@ -285,10 +285,10 @@ include __DIR__ . '/includes/header.php';
 </form>
 
 <!-- Modal para Abrir un Nuevo Mes Futuro -->
-<div id="modalNuevoMes" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 2000; align-items: center; justify-content: center; padding: 1rem;">
-    <div class="card" style="width: 100%; max-width: 450px; margin: 0; background: var(--bg-surface); border: 1px solid var(--border-color);">
+<div id="modalNuevoMes" class="modal-overlay" style="display: none;">
+    <div class="modal-content card" style="margin: 0;">
         <div class="card-header">
-            <h3 class="card-title"><i class="fa-solid fa-calendar-plus" style="color: var(--accent-emerald);"></i> Abrir Nuevo Mes de Liquidación</h3>
+            <h3 class="card-title"><i class="fa-solid fa-calendar-plus" style="color: var(--accent-gold-dark);"></i> Abrir Nuevo Mes de Liquidación</h3>
             <button onclick="document.getElementById('modalNuevoMes').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;">&times;</button>
         </div>
         <form method="GET" action="liquidaciones.php">

@@ -49,18 +49,22 @@ if (!function_exists('txt')) {
 if (!class_exists('PDFReceipt')) {
     class PDFReceipt extends FPDF {
         function Header() {
-            // Franja decorativa superior
-            $this->SetFillColor(30, 41, 59); // Slate Dark
-            $this->Rect(0, 0, 210, 15, 'F');
+            // Franja decorativa superior institucional (Azul Marino Ejecutivo)
+            $this->SetFillColor(15, 41, 66);
+            $this->Rect(0, 0, 210, 13, 'F');
+            
+            // Línea fina de acento Oro Cálido
+            $this->SetFillColor(197, 155, 39);
+            $this->Rect(0, 13, 210, 2, 'F');
             
             $this->SetY(20);
             $this->SetFont('Arial', 'B', 16);
-            $this->SetTextColor(30, 41, 59);
+            $this->SetTextColor(15, 41, 66);
             $this->Cell(0, 8, txt("RECIBO DE PAGO DE HABERES Y LIQUIDACIÓN"), 0, 1, 'C');
             
             $this->SetFont('Arial', 'I', 9);
-            $this->SetTextColor(100, 116, 139);
-            $this->Cell(0, 4, txt("Comprobante Mensual de Pago de Remuneraciones"), 0, 1, 'C');
+            $this->SetTextColor(71, 85, 105);
+            $this->Cell(0, 4, txt("Comprobante Mensual de Pago de Remuneraciones - Estudio Jerez"), 0, 1, 'C');
             $this->Ln(6);
         }
 

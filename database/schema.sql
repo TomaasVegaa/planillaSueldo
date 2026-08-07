@@ -28,8 +28,8 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Insertar Usuario Inicial (admin / admin123)
-INSERT INTO `usuarios` (`id`, `usuario`, `password_hash`, `nombre`) VALUES (1, 'admin', '$2y$10$nElzlObCmP12SA/omdnm3ORQZ36PmPMNBBQ8e3NwDxoAbedarKyo.', 'Contadora');
+-- Insertar Usuario Inicial (admin / lore2828)
+INSERT INTO `usuarios` (`id`, `usuario`, `password_hash`, `nombre`) VALUES (1, 'admin', '$2y$10$Ihqrm0dBF6S2LWmzRLYAX.StEQRURgIIRoJY8uXI01uwdP2XTzpsG', 'Contadora');
 
 CREATE TABLE `empleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

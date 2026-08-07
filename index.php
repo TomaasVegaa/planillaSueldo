@@ -97,12 +97,37 @@ include __DIR__ . '/includes/header.php';
 
 <!-- Tabla Principal de Liquidaciones -->
 <div class="card">
-    <div class="card-header">
-        <h2 class="card-title">
-            <i class="fa-solid fa-list-check" style="color: var(--accent-navy);"></i> 
-            Detalle de Sueldos - <?= FechaHelper::formatPeriodo($periodoActivo) ?>
-        </h2>
-        <span class="badge badge-purple">Sueldo Básico General: $<?= number_format($basicoGeneral, 2, ',', '.') ?></span>
+    <div class="card-header" style="flex-wrap: wrap; gap: 1rem;">
+        <div>
+            <h2 class="card-title">
+                <i class="fa-solid fa-list-check" style="color: var(--accent-navy);"></i> 
+                Detalle de Sueldos - <?= FechaHelper::formatPeriodo($periodoActivo) ?>
+            </h2>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;" id="searchCount">
+                Mostrando <?= count($liquidaciones) ?> de <?= count($liquidaciones) ?> empleados
+            </div>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <!-- Buscador en Tiempo Real -->
+            <div style="position: relative; width: 250px; max-width: 100%;">
+                <input type="text" 
+                       id="searchEmpleado" 
+                       class="form-control" 
+                       placeholder="Buscar por nombre..." 
+                       style="padding-left: 2.3rem; padding-right: 2rem; font-size: 0.875rem;"
+                       onkeyup="filtrarEmpleadosDashboard()">
+                <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.85rem;"></i>
+                <button type="button" 
+                        id="btnClearSearch" 
+                        onclick="limpiarBuscadorDashboard()" 
+                        style="display: none; position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.85rem;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <span class="badge badge-purple">Sueldo Básico General: $<?= number_format($basicoGeneral, 2, ',', '.') ?></span>
+        </div>
     </div>
     
     <div class="table-responsive">
@@ -181,10 +206,78 @@ include __DIR__ . '/includes/header.php';
                         </td>
                     </tr>
                 <?php endforeach; ?>
+                
+                <tr id="noResultsRow" style="display: none;">
+                    <td colspan="9" style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: 1.75rem; margin-bottom: 0.5rem; display: block; color: var(--accent-navy);"></i>
+                        No se encontraron empleados que coincidan con la búsqueda.
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+function filtrarEmpleadosDashboard() {
+    var input = document.getElementById('searchEmpleado');
+    var filter = input.value.toLowerCase().trim();
+    var table = document.querySelector('.table tbody');
+    var rows = table.getElementsByTagName('tr');
+    var countVisible = 0;
+    var totalRows = 0;
+    var btnClear = document.getElementById('btnClearSearch');
+
+    if (filter.length > 0) {
+        if (btnClear) btnClear.style.display = 'block';
+    } else {
+        if (btnClear) btnClear.style.display = 'none';
+    }
+
+    for (var i = 0; i < rows.length; i++) {
+        if (rows[i].id === 'noResultsRow') continue;
+        totalRows++;
+        
+        var tdNombre = rows[i].getElementsByTagName('td')[0];
+        if (tdNombre) {
+            var textValue = tdNombre.textContent || tdNombre.innerText;
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                rows[i].style.display = '';
+                countVisible++;
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+
+    var noResultsRow = document.getElementById('noResultsRow');
+    if (noResultsRow) {
+        if (countVisible === 0) {
+            noResultsRow.style.display = '';
+        } else {
+            noResultsRow.style.display = 'none';
+        }
+    }
+
+    var searchCount = document.getElementById('searchCount');
+    if (searchCount) {
+        if (filter.length > 0) {
+            searchCount.innerHTML = 'Mostrando <strong>' + countVisible + '</strong> de ' + totalRows + ' empleados';
+        } else {
+            searchCount.innerHTML = 'Mostrando ' + totalRows + ' de ' + totalRows + ' empleados';
+        }
+    }
+}
+
+function limpiarBuscadorDashboard() {
+    var input = document.getElementById('searchEmpleado');
+    if (input) {
+        input.value = '';
+        filtrarEmpleadosDashboard();
+        input.focus();
+    }
+}
+</script>
 
 <!-- Modal para Abrir un Nuevo Mes Futuro -->
 <div id="modalNuevoMes" class="modal-overlay" style="display: none;">

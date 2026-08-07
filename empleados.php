@@ -1,6 +1,7 @@
 <?php
 // empleados.php
 require_once __DIR__ . '/config/db.php';
+require_once __DIR__ . '/config/auth.php';
 
 $pdo = Database::getConnection();
 
@@ -66,7 +67,7 @@ include __DIR__ . '/includes/header.php';
 </div>
 
 <?php if ($mensaje): ?>
-    <div style="padding: 1rem; border-radius: var(--radius-md); background: #f0fdf4; border: 1px solid #bbf7d0; color: var(--accent-emerald); margin-bottom: 1.5rem;">
+    <div style="padding: 1rem; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-emerald); color: var(--accent-emerald); margin-bottom: 1.5rem;">
         <i class="fa-solid fa-circle-check"></i> <?= htmlspecialchars($mensaje) ?>
     </div>
 <?php endif; ?>
@@ -74,7 +75,7 @@ include __DIR__ . '/includes/header.php';
 <div class="card">
     <div class="card-header">
         <h2 class="card-title">
-            <i class="fa-solid fa-users-gear" style="color: var(--accent-navy);"></i> 
+            <i class="fa-solid fa-users-gear" style="color: var(--accent-blue);"></i> 
             Nómina de Empleados
         </h2>
         <span class="badge badge-blue">Total: <?= count($empleados) ?> Empleados</span>
@@ -138,10 +139,10 @@ include __DIR__ . '/includes/header.php';
 </div>
 
 <!-- Modal Crear Empleado -->
-<div id="modalCrear" class="modal-overlay" style="display: none;">
-    <div class="modal-content card" style="margin: 0;">
+<div id="modalCrear" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 2000; align-items: center; justify-content: center; padding: 1rem;">
+    <div class="card" style="width: 100%; max-width: 480px; margin: 0; background: var(--bg-surface); border: 1px solid var(--border-color);">
         <div class="card-header">
-            <h3 class="card-title"><i class="fa-solid fa-user-plus" style="color: var(--accent-navy);"></i> Nuevo Empleado</h3>
+            <h3 class="card-title"><i class="fa-solid fa-user-plus"></i> Nuevo Empleado</h3>
             <button onclick="document.getElementById('modalCrear').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;">&times;</button>
         </div>
         <form method="POST" action="empleados.php">
@@ -158,9 +159,13 @@ include __DIR__ . '/includes/header.php';
                 <label class="form-label">Horas Diarias de Trabajo</label>
                 <select name="horas_diarias" class="form-control" required>
                     <option value="8">8 Horas (Jornada Completa)</option>
+                    <option value="7">7 Horas</option>
                     <option value="6">6 Horas</option>
+                    <option value="5">5 Horas</option>
                     <option value="4">4 Horas (Media Jornada)</option>
                     <option value="3">3 Horas</option>
+                    <option value="2">2 Horas</option>
+                    <option value="1">1 Hora</option>
                 </select>
             </div>
             <div class="form-group">
@@ -177,10 +182,10 @@ include __DIR__ . '/includes/header.php';
 </div>
 
 <!-- Modal Editar Empleado -->
-<div id="modalEditar" class="modal-overlay" style="display: none;">
-    <div class="modal-content card" style="margin: 0;">
+<div id="modalEditar" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 2000; align-items: center; justify-content: center; padding: 1rem;">
+    <div class="card" style="width: 100%; max-width: 480px; margin: 0; background: var(--bg-surface); border: 1px solid var(--border-color);">
         <div class="card-header">
-            <h3 class="card-title"><i class="fa-solid fa-user-pen" style="color: var(--accent-navy);"></i> Editar Empleado</h3>
+            <h3 class="card-title"><i class="fa-solid fa-user-pen"></i> Editar Empleado</h3>
             <button onclick="document.getElementById('modalEditar').style.display='none'" style="background: none; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;">&times;</button>
         </div>
         <form method="POST" action="empleados.php">
@@ -198,9 +203,13 @@ include __DIR__ . '/includes/header.php';
                 <label class="form-label">Horas Diarias de Trabajo</label>
                 <select name="horas_diarias" id="edit_horas_diarias" class="form-control" required>
                     <option value="8">8 Horas (Jornada Completa)</option>
+                    <option value="7">7 Horas</option>
                     <option value="6">6 Horas</option>
+                    <option value="5">5 Horas</option>
                     <option value="4">4 Horas (Media Jornada)</option>
                     <option value="3">3 Horas</option>
+                    <option value="2">2 Horas</option>
+                    <option value="1">1 Hora</option>
                 </select>
             </div>
             <div class="form-group">
